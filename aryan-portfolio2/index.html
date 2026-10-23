@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aryan Anil Sarabi · 3D Artist &amp; Animator</title>
+<meta name="description" content="Portfolio of Aryan Anil Sarabi, a Blender 3D artist and animator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e0f11; --coal:#17181b; --edge:#2a2c31; --paper:#ece8e0; --mute:#9a978f; --gold:#c9a24b;
+  --font:'Bricolage Grotesque',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--font);color:var(--paper);background:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1200px,92vw);margin-inline:auto}
+
+/* header */
+header.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px 4vw;background:linear-gradient(var(--ink),transparent)}
+header.top .logo{font-weight:800;text-decoration:none;letter-spacing:-.01em}
+header.top nav{display:flex;gap:26px}
+header.top nav a{text-decoration:none;color:var(--paper);opacity:.8;font-size:.95rem}
+header.top nav a:hover{opacity:1}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero video,.hero .fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.9)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 4%,transparent 55%)}
+.hero .wrap{position:relative;z-index:2;padding-bottom:9vh}
+.hero h1{font-size:clamp(3rem,10.5vw,9.5rem);font-weight:800;line-height:.92;letter-spacing:-.04em;max-width:11ch}
+.hero p{margin-top:22px;max-width:44ch;font-size:1.15rem;color:#d6d2c8}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-block;padding:13px 24px;border-radius:999px;font-weight:600;text-decoration:none;border:1px solid var(--paper);transition:background .2s,color .2s}
+.btn.fill{background:var(--paper);color:var(--ink)}
+.btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+/* sections */
+section{padding:clamp(70px,11vw,140px) 0}
+h2{font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+
+/* work */
+.filters{display:flex;gap:8px;margin:28px 0 36px;flex-wrap:wrap}
+.filters button{font:inherit;color:var(--paper);background:none;border:1px solid var(--edge);padding:8px 18px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.grid{columns:3 320px;column-gap:18px}
+.card{position:relative;display:block;width:100%;margin:0 0 18px;padding:0;border:0;background:var(--coal);border-radius:6px;overflow:hidden;cursor:pointer;break-inside:avoid;text-align:left;color:inherit;font:inherit}
+.card img{display:block;width:100%;height:auto;transition:transform .5s,filter .3s}
+.card:hover img{transform:scale(1.04);filter:brightness(.7)}
+.card .cap{position:absolute;inset:auto 0 0 0;padding:44px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.82))}
+.card .cap b{display:block;font-weight:600}
+.card .cap span{font-size:.88rem;color:var(--mute)}
+.card .play{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(14,15,17,.7);display:grid;place-items:center}
+.card .play::before{content:"";border-left:11px solid var(--paper);border-block:7px solid transparent;margin-left:3px}
+.card[hidden]{display:none}
+
+/* about, skills */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.cols p{color:#cfcbc1;max-width:52ch}
+.cols p+p{margin-top:1em}
+.note{color:var(--mute);font-size:.9rem;border-left:2px solid var(--gold);padding-left:12px;margin-top:22px}
+.skills{list-style:none;padding:0;border-top:1px solid var(--edge)}
+.skills li{padding:16px 0;border-bottom:1px solid var(--edge);font-size:1.15rem;font-weight:600}
+.alt{background:var(--coal)}
+.contact h2{max-width:14ch}
+.contact .btns{margin-top:34px}
+footer{padding:30px 0 50px;color:var(--mute);font-size:.9rem}
+
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(1200px,94vw);width:100%;margin:auto;color:var(--paper)}
+dialog::backdrop{background:rgba(5,5,6,.92)}
+dialog .stage{display:flex;justify-content:center}
+dialog .stage img,dialog .stage video{max-width:100%;max-height:80vh;border-radius:6px;background:#000}
+dialog .meta{padding:14px 4px}
+dialog .meta b{font-size:1.1rem}
+dialog .meta p{color:var(--mute);font-size:.95rem}
+dialog .close{position:absolute;top:-6px;right:0;transform:translateY(-100%);font:inherit;color:var(--paper);background:none;border:1px solid var(--edge);border-radius:999px;padding:6px 16px;cursor:pointer}
+
+@media (max-width:760px){
+  header.top nav{gap:16px}
+  .cols{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .card img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#top">Aryan Sarabi</a>
+  <nav aria-label="Main">
+    <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <video id="heroVideo" autoplay muted loop playsinline poster="assets/img/car-reveal-poster.jpg" aria-hidden="true">
+      <source src="assets/video/car-reveal.mp4" type="video/mp4">
+    </video>
+    <div class="wrap">
+      <h1>Aryan Anil Sarabi</h1>
+      <p>3D artist and animator working in Blender. Product visuals, environments and motion.</p>
+      <div class="btns">
+        <a class="btn fill" href="#work">See the work</a>
+        <a class="btn" href="https://github.com/aryansarabi07-ship-it" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <div class="filters" role="group" aria-label="Filter work">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="animation" aria-pressed="false">Animation</button>
+        <button type="button" data-filter="render" aria-pressed="false">Still renders</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="about" class="alt">
+    <div class="wrap cols">
+      <div>
+        <h2>About</h2>
+        <p class="note">Placeholder text. Replace the paragraphs below with your own words. Open index.html in a text editor and search for "ABOUT TEXT".</p>
+      </div>
+      <div>
+        <!-- ABOUT TEXT: edit these two paragraphs -->
+        <p>I'm Aryan, a 3D artist who models, lights and animates in Blender.</p>
+        <p>I'm looking for work in 3D art, product visualization and animation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap cols">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <!-- SKILLS: add or remove list items -->
+        <li>Blender</li>
+        <li>3D modelling</li>
+        <li>Animation</li>
+        <li>Product visualization</li>
+        <li>Lighting and rendering</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="alt contact">
+    <div class="wrap">
+      <h2>Let's work together</h2>
+      <div class="btns">
+        <!-- CONTACT: replace your-email@example.com with your real email -->
+        <a class="btn fill" href="mailto:your-email@example.com">Email me</a>
+        <a class="btn" href="https://github.com/aryansarabi07-ship-it" target="_blank" rel="noopener">GitHub profile</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> Aryan Anil Sarabi</div></footer>
+
+<dialog id="lb" aria-label="Project viewer">
+  <button class="close" type="button" id="lbClose">Close</button>
+  <div class="stage" id="lbStage"></div>
+  <div class="meta"><b id="lbTitle"></b><p id="lbNote"></p></div>
+</dialog>
+
+<script>
+/* ADD YOUR OWN WORK HERE.
+   Copy one block, put your file in assets/img or assets/video, change the names.
+   kind: "video" or "image"   |   group: "animation" or "render"
+   For videos, "thumb" is the preview picture. */
+const projects = [
+  { kind:"video", group:"animation", title:"Car reveal", note:"Cloth-covered car reveal animation.", src:"assets/video/car-reveal.mp4", thumb:"assets/img/car-reveal-poster.jpg" },
+  { kind:"image", group:"render",    title:"Desert wanderer", note:"Desert landscape with a lone figure.", src:"assets/img/sand.jpg", thumb:"assets/img/sand.jpg" },
+  { kind:"video", group:"animation", title:"AirPods animation", note:"Product animation of an earbud.", src:"assets/video/airpods.mp4", thumb:"assets/img/airpods-poster.jpg" },
+  { kind:"image", group:"render",    title:"Interior with a view", note:"Interior scene with a mountain view.", src:"assets/img/interior.jpg", thumb:"assets/img/interior.jpg" },
+  { kind:"video", group:"animation", title:"Gold name title", note:"Animated 3D gold lettering.", src:"assets/video/gold-name.mp4", thumb:"assets/img/gold-name-poster.jpg" },
+  { kind:"image", group:"render",    title:"Camera model", note:"Stylised camera, modelled and rendered in Blender.", src:"assets/img/camera.jpg", thumb:"assets/img/camera.jpg" },
+  { kind:"video", group:"animation", title:"Grass on a sphere", note:"Grass growing across a glossy sphere.", src:"assets/video/grass-sphere.mp4", thumb:"assets/img/grass-sphere-poster.jpg" },
+  { kind:"image", group:"render",    title:"Plant close-up", note:"Close-up of a leafy plant with shallow depth of field.", src:"assets/img/plant.jpg", thumb:"assets/img/plant.jpg" },
+  { kind:"video", group:"animation", title:"Night road shot", note:"Car on a city road at night.", src:"assets/video/night-drive.mp4", thumb:"assets/img/night-drive-poster.jpg" },
+  { kind:"video", group:"animation", title:"3D text", note:"Animated 3D lettering.", src:"assets/video/aryan-text.mp4", thumb:"assets/img/aryan-text-poster.jpg" }
+];
+
+const grid = document.getElementById('grid');
+projects.forEach((p, i) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'card'; b.dataset.group = p.group; b.dataset.i = i;
+  b.setAttribute('aria-label', 'Open ' + p.title);
+  b.innerHTML = '<img loading="lazy" alt="" src="' + p.thumb + '">' +
+    (p.kind === 'video' ? '<span class="play"></span>' : '') +
+    '<span class="cap"><b>' + p.title + '</b><span>' + (p.group === 'animation' ? 'Animation' : 'Still render') + '</span></span>';
+  grid.appendChild(b);
+});
+
+/* filters */
+document.querySelectorAll('.filters button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x === btn));
+    const f = btn.dataset.filter;
+    grid.querySelectorAll('.card').forEach(c => { c.hidden = !(f === 'all' || c.dataset.group === f); });
+  });
+});
+
+/* lightbox */
+const lb = document.getElementById('lb'), stage = document.getElementById('lbStage');
+grid.addEventListener('click', e => {
+  const c = e.target.closest('.card'); if (!c) return;
+  const p = projects[c.dataset.i];
+  stage.innerHTML = p.kind === 'video'
+    ? '<video controls autoplay playsinline loop src="' + p.src + '"></video>'
+    : '<img alt="' + p.title + '" src="' + p.src + '">';
+  document.getElementById('lbTitle').textContent = p.title;
+  document.getElementById('lbNote').textContent = p.note;
+  lb.showModal();
+});
+function closeLb(){ lb.close(); }
+lb.addEventListener('close', () => { stage.innerHTML = ''; });
+document.getElementById('lbClose').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+/* hero video respects reduced motion */
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.getElementById('heroVideo').removeAttribute('autoplay');
+  document.getElementById('heroVideo').pause();
+}
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
